@@ -1,0 +1,877 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support-int@jetbrains.com
+  title: JetBrains Account API
+  version: "1.0"
+servers:
+- url: /api/v1
+paths:
+  /token:
+    get:
+      operationId: getManagedEntityInfo
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getManagedEntityInfo_200_response'
+          description: successful operation
+      security:
+      - header-api-key: []
+      summary: Returns info about the entity managed by current token
+      tags:
+      - Token
+      x-accepts: application/json
+  /customer/licenses/assign:
+    post:
+      operationId: assignLicense
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignLicenseRequest'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: bad request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+      security:
+      - header-api-key: []
+      summary: Assigns a license to a user
+      tags:
+      - Licenses
+      x-content-type: application/json
+      x-accepts: application/json
+  /customer/changeLicensesTeam:
+    post:
+      description: Changes team for provided licenses. Only licenses that are transferable
+        between teams will be transferred.
+      operationId: changeTeam
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeTeamRequest'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: bad request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+      security:
+      - header-api-key: []
+      summary: Change team for licenses
+      tags:
+      - Licenses
+      x-content-type: application/json
+      x-accepts: application/json
+  /customer/licenses:
+    get:
+      operationId: getAllForCustomer
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Product code to filter licenses
+        example: II
+        explode: true
+        in: query
+        name: productCode
+        required: false
+        schema:
+          default: "null"
+          type: string
+        style: form
+      - description: Current page number (page numbering starts with 1)
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: The number of items to return per page
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 100
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: Fetches only assigned licenses if set to true and unassigned
+          is set to false. If set to null all licenses will be fetched.
+        explode: true
+        in: query
+        name: assigned
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Assignee email to filter licenses
+        example: assignee.email@example.com
+        explode: true
+        in: query
+        name: assigneeEmail
+        required: false
+        schema:
+          default: "null"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LicenseResponse'
+                type: array
+          description: successful operation
+          headers:
+            X-Total-Count:
+              description: The total entries
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            Link:
+              description: Links for pagination
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - header-api-key: []
+      summary: Returns all the licenses of a current customer
+      tags:
+      - Licenses
+      x-accepts: application/json
+  /customer/teams/{teamId}/licenses:
+    get:
+      operationId: getAllForTeam
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Team ID
+        explode: false
+        in: path
+        name: teamId
+        required: true
+        schema:
+          default: 1
+          format: int32
+          minimum: 1
+          type: integer
+        style: simple
+      - description: Product code to filter licenses
+        example: II
+        explode: true
+        in: query
+        name: productCode
+        required: false
+        schema:
+          default: "null"
+          type: string
+        style: form
+      - description: Current page number (page numbering starts with 1)
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          format: int32
+          minimum: 1
+          type: integer
+        style: form
+      - description: The number of items to return per page
+        explode: true
+        in: query
+        name: perPage
+        required: false
+        schema:
+          default: 100
+          format: int32
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: Fetches only assigned licenses if set to true and unassigned
+          is set to false. If set to null all licenses will be fetched.
+        explode: true
+        in: query
+        name: assigned
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Assignee email to filter licenses
+        example: assignee.email@example.com
+        explode: true
+        in: query
+        name: assigneeEmail
+        required: false
+        schema:
+          default: "null"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LicenseResponse'
+                type: array
+          description: successful operation
+          headers:
+            X-Total-Count:
+              description: The total entries
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            Link:
+              description: Links for pagination
+              explode: false
+              schema:
+                type: string
+              style: simple
+      security:
+      - header-api-key: []
+      summary: Returns all the licenses of a current team
+      tags:
+      - Licenses
+      x-accepts: application/json
+  /customer/licenses/{licenseId}:
+    get:
+      operationId: getByLicenseId
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: ID of a license
+        example: ABC1234567
+        explode: false
+        in: path
+        name: licenseId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseResponse'
+          description: successful operation
+      security:
+      - header-api-key: []
+      summary: Returns a license by ID
+      tags:
+      - Licenses
+      x-accepts: application/json
+  /customer/licenses/revoke:
+    post:
+      description: "If licenseId is provided, a single license will be revoked if\
+        \ found. Other parameters are ignored in this case. <br />If he licenseId\
+        \ is not provided then the licenses will be revoked by the assignee's email.\
+        \ <br />In addition to email, productCode might be provided to revoke licenses\
+        \ for specified products only for the defined email. <br />JetBrains IDE licenses\
+        \ are distributed on a per-user basis and must be statically assigned to developers.\
+        \ Therefore, the revoke operation via the JetBrains Account API is available\
+        \ only 30 days after the license has been assigned. For the automated license\
+        \ distribution you can use the JetBrains License Vault: https://www.jetbrains.com/license-server\
+        \ <br />If the licenses are being revoked by assignee's email within 30 days\
+        \ after assignment (for at least 1 assignee's license found), RECENTLY_ASSIGNED_LICENSE_IS_NOT_AVAILABLE_FOR_REVOKE\
+        \ error will be returned and no licenses will be revoked."
+      operationId: revokeAsset
+      parameters:
+      - description: "Company Profile ID, it can be found on JetBrains Account portal\
+          \ near the company name"
+        explode: false
+        in: header
+        name: X-Customer-Code
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: ID of a license
+        example: ABC1234567
+        explode: true
+        in: query
+        name: licenseId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Assignee's email
+        example: example@domain.com
+        explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Product code to filter licenses
+        example: II
+        explode: true
+        in: query
+        name: productCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevokedLicensesResponse'
+          description: licenseIds of revoked licenses
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: bad request
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+      security:
+      - header-api-key: []
+      summary: Revokes a license from a user
+      tags:
+      - Licenses
+      x-accepts: application/json
+  /plugins:
+    get:
+      operationId: getPlugins
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+                type: array
+          description: successful operation
+      security:
+      - header-api-key: []
+      summary: Returns a plugins list
+      tags:
+      - Dictionaries
+      x-accepts: application/json
+  /products:
+    get:
+      operationId: getProducts
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductResponse'
+                type: array
+          description: successful operation
+      security:
+      - header-api-key: []
+      summary: Returns a products list
+      tags:
+      - Dictionaries
+      x-accepts: application/json
+components:
+  schemas:
+    ContactFlagsResponse:
+      description: Flags of the current account's contact on the customer.
+      properties:
+        isPrimaryLicensee:
+          type: boolean
+        isPrimaryTechnical:
+          type: boolean
+        isPrimaryBilling:
+          type: boolean
+      type: object
+    ManagedCustomerResponse:
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedEntityType'
+        code:
+          description: Code of the managed customer. Use this code for API requests
+          example: 1
+          format: int64
+          type: integer
+        name:
+          description: Name of the managed customer.
+          example: Some Organization
+          type: string
+        role:
+          description: The role of current account on the customer.
+          enum:
+          - ADMIN
+          - VIEWER
+          - PRIMARY_CONTACT
+          example: ADMIN
+          type: string
+        contactFlags:
+          $ref: '#/components/schemas/ContactFlagsResponse'
+        teams:
+          description: List of customer teams.
+          items:
+            $ref: '#/components/schemas/TeamResponseExt'
+          type: array
+      type: object
+    ManagedEntityType:
+      enum:
+      - CUSTOMER
+      - TEAM
+      type: string
+    TeamResponseExt:
+      description: Information about the team token was generated for.
+      properties:
+        id:
+          description: ID of the managed team. Use this ID for API requests
+          example: 1
+          format: int32
+          type: integer
+        name:
+          description: Name of the managed team.
+          example: Sample Team
+          type: string
+        role:
+          description: Role of the current account on the team
+          enum:
+          - ADMIN
+          - VIEWER
+          example: VIEWER
+          type: string
+      type: object
+    CustomerResponse:
+      description: Information about the customer owning the team.
+      properties:
+        code:
+          description: Code of a customer.
+          example: 1
+          format: int64
+          type: integer
+        name:
+          description: Name of a customer.
+          example: Some Organization
+          type: string
+      type: object
+    ManagedTeamResponse:
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedEntityType'
+        team:
+          $ref: '#/components/schemas/TeamResponseExt'
+        customer:
+          $ref: '#/components/schemas/CustomerResponse'
+      type: object
+    ManagedEntity:
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedEntityType'
+      type: object
+    AssignFromTeamRequest:
+      description: "If licenseId is not specified, available license from the specified\
+        \ team for the specified product will be assigned. If no licenseId and license\
+        \ are specified, the 400 error will be returned."
+      example:
+        productCode: II
+        team: 1
+      properties:
+        team:
+          description: ID of a team to look for assignable license
+          example: 1
+          format: int32
+          type: integer
+        productCode:
+          description: The code of a product to assign
+          example: II
+          type: string
+      required:
+      - productCode
+      - team
+      type: object
+    AssignLicenseRequest:
+      example:
+        license:
+          productCode: II
+          team: 1
+        sendEmail: true
+        includeOfflineActivationCode: true
+        contact:
+          firstName: firstName
+          lastName: lastName
+          email: email
+        licenseId: ABC1234567
+      properties:
+        licenseId:
+          description: ID of a license to assign
+          example: ABC1234567
+          type: string
+        license:
+          $ref: '#/components/schemas/AssignFromTeamRequest'
+        contact:
+          $ref: '#/components/schemas/AssigneeContactRequest'
+        sendEmail:
+          type: boolean
+        includeOfflineActivationCode:
+          description: Indicates whether an offline activation code should be attached
+            to the email. The offline activation code can be attached only for contacts
+            that do not have JetBrains Account. 'includeOfflineActivationCode' will
+            be ignored if the contact has JetBrains Account. Assignee can download
+            offline activation code in their JetBrains Account
+          type: boolean
+      required:
+      - contact
+      - includeOfflineActivationCode
+      - sendEmail
+      type: object
+    AssigneeContactRequest:
+      example:
+        firstName: firstName
+        lastName: lastName
+        email: email
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          format: email
+          type: string
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+    Error:
+      properties:
+        description:
+          type: string
+        code:
+          type: string
+      type: object
+    ChangeTeamRequest:
+      example:
+        targetTeamId: 0
+        licenseIds:
+        - licenseIds
+        - licenseIds
+      properties:
+        targetTeamId:
+          description: ID of the target team
+          format: int32
+          type: integer
+        licenseIds:
+          description: IDs of the licenses to change team
+          items:
+            description: IDs of the licenses to change team
+            type: string
+          type: array
+      required:
+      - licenseIds
+      - targetTeamId
+      type: object
+    ChangeTeamResponse:
+      properties:
+        licenseIds:
+          items:
+            type: string
+          type: array
+      type: object
+    AssigneeResponse:
+      anyOf:
+      - $ref: '#/components/schemas/User'
+      - $ref: '#/components/schemas/Server'
+      - $ref: '#/components/schemas/LicenseKey'
+      example:
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/AssigneeTypeResponse'
+      type: object
+    AssigneeTypeResponse:
+      enum:
+      - USER
+      - SERVER
+      - LICENSE_KEY
+      type: string
+    LastSeenResponse:
+      example:
+        lastAssignmentDate: 2000-01-23T04:56:07.000+00:00
+        lastSeenDate: 2000-01-23T04:56:07.000+00:00
+        isOfflineCodeGenerated: true
+      properties:
+        lastSeenDate:
+          format: date-time
+          type: string
+        lastAssignmentDate:
+          format: date-time
+          type: string
+        isOfflineCodeGenerated:
+          type: boolean
+      type: object
+    LicenseKey:
+      properties:
+        type:
+          $ref: '#/components/schemas/AssigneeTypeResponse'
+        registrationName:
+          type: string
+        key:
+          type: string
+      type: object
+    LicenseResponse:
+      example:
+        product:
+          code: II
+          name: IntelliJ IDEA Ultimate
+        lastSeen:
+          lastAssignmentDate: 2000-01-23T04:56:07.000+00:00
+          lastSeenDate: 2000-01-23T04:56:07.000+00:00
+          isOfflineCodeGenerated: true
+        isSuspended: true
+        isAvailableToAssign: true
+        domain: domain
+        assignee:
+          type: null
+        subscription:
+          isOutdated: true
+          validUntilDate: 2000-01-23T04:56:07.000+00:00
+          subscriptionPackRef: subscriptionPackRef
+          isAutomaticallyRenewed: true
+        team:
+          name: name
+          id: 0
+        licenseId: ABC1234567
+        perpetual:
+          upgradeDueDate: 2000-01-23T04:56:07.000+00:00
+          isOutdated: true
+        isTransferableBetweenTeams: true
+        isTrial: true
+      properties:
+        licenseId:
+          example: ABC1234567
+          type: string
+        product:
+          $ref: '#/components/schemas/ProductResponse'
+        assignee:
+          $ref: '#/components/schemas/AssigneeResponse'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionResponse'
+        perpetual:
+          $ref: '#/components/schemas/PerpetualResponse'
+        domain:
+          type: string
+        lastSeen:
+          $ref: '#/components/schemas/LastSeenResponse'
+        team:
+          $ref: '#/components/schemas/TeamResponse'
+        isTransferableBetweenTeams:
+          type: boolean
+        isTrial:
+          type: boolean
+        isAvailableToAssign:
+          description: Indicates whether the license is available to assign.
+          type: boolean
+        isSuspended:
+          type: boolean
+      type: object
+    PerpetualResponse:
+      example:
+        upgradeDueDate: 2000-01-23T04:56:07.000+00:00
+        isOutdated: true
+      properties:
+        upgradeDueDate:
+          format: date-time
+          type: string
+        isOutdated:
+          type: boolean
+      type: object
+    ProductResponse:
+      example:
+        code: II
+        name: IntelliJ IDEA Ultimate
+      properties:
+        code:
+          description: The product code
+          example: II
+          type: string
+        name:
+          description: The product name
+          example: IntelliJ IDEA Ultimate
+          type: string
+      type: object
+    Server:
+      properties:
+        type:
+          $ref: '#/components/schemas/AssigneeTypeResponse'
+        uid:
+          type: string
+        serverType:
+          enum:
+          - LICENSE_SERVER
+          - LICENSE_VAULT
+          type: string
+      type: object
+    SubscriptionResponse:
+      example:
+        isOutdated: true
+        validUntilDate: 2000-01-23T04:56:07.000+00:00
+        subscriptionPackRef: subscriptionPackRef
+        isAutomaticallyRenewed: true
+      properties:
+        validUntilDate:
+          format: date-time
+          type: string
+        subscriptionPackRef:
+          description: Subscription pack reference. 'null' if renewal is stopped.
+          type: string
+        isAutomaticallyRenewed:
+          type: boolean
+        isOutdated:
+          type: boolean
+      type: object
+    TeamResponse:
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+      type: object
+    User:
+      properties:
+        type:
+          $ref: '#/components/schemas/AssigneeTypeResponse'
+        name:
+          type: string
+        email:
+          type: string
+      type: object
+    PagedListResultLicenseResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/LicenseResponse'
+          type: array
+        pages:
+          additionalProperties:
+            type: string
+          type: object
+        count:
+          format: int32
+          type: integer
+      type: object
+    RevokedLicensesResponse:
+      example:
+        licenseIds:
+        - licenseIds
+        - licenseIds
+      properties:
+        licenseIds:
+          items:
+            type: string
+          type: array
+      type: object
+    getManagedEntityInfo_200_response:
+      anyOf:
+      - $ref: '#/components/schemas/ManagedCustomerResponse'
+      - $ref: '#/components/schemas/ManagedTeamResponse'
+  securitySchemes:
+    header-api-key:
+      description: "API token, it can be generated on JetBrains Account portal for\
+        \ a company or team profile"
+      in: header
+      name: X-Api-Key
+      type: apiKey
+

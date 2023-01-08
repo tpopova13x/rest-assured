@@ -1,0 +1,173 @@
+-------------------------------------------------------------------------------
+Test set: customer.AssignLicensesApiTests
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 22.363 s <<< FAILURE! - in customer.AssignLicensesApiTests
+testNotExistingTeamNoLicenseId400  Time elapsed: 0.088 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (2 failures)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:146)
+-- failure 2 --
+expected: 
+  class LicenseResponse {
+      licenseId: AYUP1280JG
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 9999999
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+ but was: 
+  class LicenseResponse {
+      licenseId: AYUP1280JG
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:149)
+
+testWrongToken400  Time elapsed: 0 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 401
+at AssignLicensesApiTests.testWrongToken400(AssignLicensesApiTests.java:33)
+
+testXCustomerNotExists400  Time elapsed: 0 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 401
+at AssignLicensesApiTests.testXCustomerNotExists400(AssignLicensesApiTests.java:46)
+
+testLicenseIdValueNotExistsNoLicense400  Time elapsed: 0.273 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testLicenseIdValueNotExistsNoLicense400(AssignLicensesApiTests.java:60)
+
+testAssignLicenseAsViewer403  Time elapsed: 0.561 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: ApiException was expected: Viewer and Primary contact access tokens allow read-only access to the API: https://sales.jetbrains.com/hc/en-gb/articles/4406854152978-JetBrains-Account-API ==> Expected org.openapitools.client.ApiException to be thrown, but nothing was thrown.
+	at customer.AssignLicensesApiTests.testAssignLicenseAsViewer403(AssignLicensesApiTests.java:192)
+
+testNotExistingProductCodeNoLicenseId400  Time elapsed: 0.783 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (2 failures)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:131)
+-- failure 2 --
+expected: 
+  class LicenseResponse {
+      licenseId: OIY94JBDUQ
+      product: class ProductResponse {
+          code: 0000000
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+ but was: 
+  class LicenseResponse {
+      licenseId: OIY94JBDUQ
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: class class org.openapitools.client.model.AssigneeResponse {
+          instance: class User {
+              type: USER
+              name: firstname lastName
+              email: email@gmail.com
+          }
+          isNullable: false
+          schemaType: anyOf
+      }
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: class LastSeenResponse {
+          lastSeenDate: null
+          lastAssignmentDate: 2023-01-08T23:38:46+03:00
+          isOfflineCodeGenerated: false
+      }
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: false
+      isSuspended: false
+  }
+at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:134)
+

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="customer.AssignLicensesApiTests" time="22.363" tests="16" errors="0" skipped="0" failures="6">
+  <properties>
+    <property name="http.proxyHost" value="127.0.0.1"/>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/tpopova/IdeaProjects/rest-assured/target/test-classes:/Users/tpopova/IdeaProjects/rest-assured/target/classes:/Users/tpopova/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar:/Users/tpopova/.m2/repository/commons-validator/commons-validator/1.4.1/commons-validator-1.4.1.jar:/Users/tpopova/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar:/Users/tpopova/.m2/repository/commons-digester/commons-digester/1.8.1/commons-digester-1.8.1.jar:/Users/tpopova/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/tpopova/.m2/repository/net/bytebuddy/byte-buddy/1.12.10/byte-buddy-1.12.10.jar:/Users/tpopova/.m2/repository/com/squareup/okio/okio/3.2.0/okio-3.2.0.jar:/Users/tpopova/.m2/repository/com/squareup/okio/okio-jvm/3.2.0/okio-jvm-3.2.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-common/1.6.20/kotlin-stdlib-common-1.6.20.jar:/Users/tpopova/.m2/repository/io/swagger/swagger-annotations/1.6.9/swagger-annotations-1.6.9.jar:/Users/tpopova/.m2/repository/com/squareup/okhttp3/okhttp/4.5.0/okhttp-4.5.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.3.70/kotlin-stdlib-1.3.70.jar:/Users/tpopova/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/Users/tpopova/.m2/repository/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar:/Users/tpopova/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1.1/javax.ws.rs-api-2.1.1.jar:/Users/tpopova/.m2/repository/io/gsonfire/gson-fire/1.8.5/gson-fire-1.8.5.jar:/Users/tpopova/.m2/repository/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar:/Users/tpopova/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/tpopova/.m2/repository/com/squareup/okhttp3/logging-interceptor/4.10.0/logging-interceptor-4.10.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.6.10/kotlin-stdlib-jdk8-1.6.10.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.6.10/kotlin-stdlib-jdk7-1.6.10.jar:/Users/tpopova/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/tpopova/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/tpopova/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/tpopova/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tpopova/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/tpopova/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/tpopova/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/tpopova/.m2/repository/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar:/Users/tpopova/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/tpopova/.m2/repository/org/assertj/assertj-core/3.23.1/assertj-core-3.23.1.jar:/Users/tpopova/.m2/repository/com/codeborne/selenide/6.11.0/selenide-6.11.0.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-java/4.7.2/selenium-java-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-api/4.7.2/selenium-api-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-chrome-driver/4.7.2/selenium-chrome-driver-4.7.2.jar:/Users/tpopova/.m2/repository/com/google/auto/service/auto-service-annotations/1.0.1/auto-service-annotations-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/auto/service/auto-service/1.0.1/auto-service-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/auto/auto-common/1.2/auto-common-1.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-chromium-driver/4.7.2/selenium-chromium-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-json/4.7.2/selenium-json-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v106/4.7.2/selenium-devtools-v106-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v107/4.7.2/selenium-devtools-v107-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v108/4.7.2/selenium-devtools-v108-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v85/4.7.2/selenium-devtools-v85-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-edge-driver/4.7.2/selenium-edge-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-firefox-driver/4.7.2/selenium-firefox-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-http/4.7.2/selenium-http-4.7.2.jar:/Users/tpopova/.m2/repository/dev/failsafe/failsafe/3.3.0/failsafe-3.3.0.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-ie-driver/4.7.2/selenium-ie-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/4.7.2/selenium-remote-driver-4.7.2.jar:/Users/tpopova/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/tpopova/.m2/repository/io/netty/netty-buffer/4.1.84.Final/netty-buffer-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec-http/4.1.84.Final/netty-codec-http-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec/4.1.84.Final/netty-codec-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-handler/4.1.84.Final/netty-handler-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-common/4.1.84.Final/netty-common-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.84.Final/netty-transport-classes-epoll-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-classes-kqueue/4.1.84.Final/netty-transport-classes-kqueue-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-epoll/4.1.84.Final/netty-transport-native-epoll-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.84.Final/netty-transport-native-kqueue-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.84.Final/netty-transport-native-unix-common-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport/4.1.84.Final/netty-transport-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-resolver/4.1.84.Final/netty-resolver-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-api/1.19.0/opentelemetry-api-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-context/1.19.0/opentelemetry-context-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-exporter-logging/1.19.0/opentelemetry-exporter-logging-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-metrics/1.19.0/opentelemetry-sdk-metrics-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-logs/1.19.0-alpha/opentelemetry-sdk-logs-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-api-logs/1.19.0-alpha/opentelemetry-api-logs-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-common/1.19.0/opentelemetry-sdk-common-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.19.0/opentelemetry-sdk-extension-autoconfigure-spi-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.19.0-alpha/opentelemetry-sdk-extension-autoconfigure-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-exporter-common/1.19.0/opentelemetry-exporter-common-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-trace/1.19.0/opentelemetry-sdk-trace-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk/1.19.0/opentelemetry-sdk-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-semconv/1.19.0-alpha/opentelemetry-semconv-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/ous/jtoml/2.0.0/jtoml-2.0.0.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar:/Users/tpopova/.m2/repository/org/asynchttpclient/async-http-client/2.12.3/async-http-client-2.12.3.jar:/Users/tpopova/.m2/repository/org/asynchttpclient/async-http-client-netty-utils/2.12.3/async-http-client-netty-utils-2.12.3.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec-socks/4.1.60.Final/netty-codec-socks-4.1.60.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-handler-proxy/4.1.60.Final/netty-handler-proxy-4.1.60.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-epoll/4.1.60.Final/netty-transport-native-epoll-4.1.60.Final-linux-x86_64.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.60.Final/netty-transport-native-kqueue-4.1.60.Final-osx-x86_64.jar:/Users/tpopova/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar:/Users/tpopova/.m2/repository/com/typesafe/netty/netty-reactive-streams/2.0.4/netty-reactive-streams-2.0.4.jar:/Users/tpopova/.m2/repository/com/sun/activation/jakarta.activation/1.2.2/jakarta.activation-1.2.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-manager/4.7.2/selenium-manager-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-safari-driver/4.7.2/selenium-safari-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-support/4.7.2/selenium-support-4.7.2.jar:/Users/tpopova/.m2/repository/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar:/Users/tpopova/.m2/repository/com/codeborne/selenide-core/6.11.0/selenide-core-6.11.0.jar:/Users/tpopova/.m2/repository/io/github/bonigarcia/webdrivermanager/5.3.1/webdrivermanager-5.3.1.jar:/Users/tpopova/.m2/repository/org/brotli/dec/0.1.2/dec-0.1.2.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-compress/1.22/commons-compress-1.22.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.2.1/httpclient5-5.2.1.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.2/httpcore5-5.2.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.2/httpcore5-h2-5.2.jar:/Users/tpopova/.m2/repository/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar:/Users/tpopova/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/tpopova/.m2/repository/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar:/Users/tpopova/.m2/repository/com/google/errorprone/error_prone_annotations/2.11.0/error_prone_annotations-2.11.0.jar:/Users/tpopova/.m2/repository/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/tpopova/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:"/>
+    <property name="java.vm.vendor" value="Homebrew"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/17.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/tpopova/IdeaProjects/rest-assured/target/surefire/surefirebooter16009212636429188560.jar /Users/tpopova/IdeaProjects/rest-assured/target/surefire 2023-01-08T21-38-24_106-jvmRun1 surefire10654905009076895511tmp surefire_09197682298958884708tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/tpopova/IdeaProjects/rest-assured/target/test-classes:/Users/tpopova/IdeaProjects/rest-assured/target/classes:/Users/tpopova/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar:/Users/tpopova/.m2/repository/commons-validator/commons-validator/1.4.1/commons-validator-1.4.1.jar:/Users/tpopova/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar:/Users/tpopova/.m2/repository/commons-digester/commons-digester/1.8.1/commons-digester-1.8.1.jar:/Users/tpopova/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/tpopova/.m2/repository/net/bytebuddy/byte-buddy/1.12.10/byte-buddy-1.12.10.jar:/Users/tpopova/.m2/repository/com/squareup/okio/okio/3.2.0/okio-3.2.0.jar:/Users/tpopova/.m2/repository/com/squareup/okio/okio-jvm/3.2.0/okio-jvm-3.2.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-common/1.6.20/kotlin-stdlib-common-1.6.20.jar:/Users/tpopova/.m2/repository/io/swagger/swagger-annotations/1.6.9/swagger-annotations-1.6.9.jar:/Users/tpopova/.m2/repository/com/squareup/okhttp3/okhttp/4.5.0/okhttp-4.5.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.3.70/kotlin-stdlib-1.3.70.jar:/Users/tpopova/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar:/Users/tpopova/.m2/repository/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar:/Users/tpopova/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.1.1/javax.ws.rs-api-2.1.1.jar:/Users/tpopova/.m2/repository/io/gsonfire/gson-fire/1.8.5/gson-fire-1.8.5.jar:/Users/tpopova/.m2/repository/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar:/Users/tpopova/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/tpopova/.m2/repository/com/squareup/okhttp3/logging-interceptor/4.10.0/logging-interceptor-4.10.0.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.6.10/kotlin-stdlib-jdk8-1.6.10.jar:/Users/tpopova/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.6.10/kotlin-stdlib-jdk7-1.6.10.jar:/Users/tpopova/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.2/junit-jupiter-api-5.8.2.jar:/Users/tpopova/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/tpopova/.m2/repository/org/junit/platform/junit-platform-commons/1.8.2/junit-platform-commons-1.8.2.jar:/Users/tpopova/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/tpopova/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.2/junit-jupiter-engine-5.8.2.jar:/Users/tpopova/.m2/repository/org/junit/platform/junit-platform-engine/1.8.2/junit-platform-engine-1.8.2.jar:/Users/tpopova/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/tpopova/.m2/repository/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar:/Users/tpopova/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/tpopova/.m2/repository/org/assertj/assertj-core/3.23.1/assertj-core-3.23.1.jar:/Users/tpopova/.m2/repository/com/codeborne/selenide/6.11.0/selenide-6.11.0.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-java/4.7.2/selenium-java-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-api/4.7.2/selenium-api-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-chrome-driver/4.7.2/selenium-chrome-driver-4.7.2.jar:/Users/tpopova/.m2/repository/com/google/auto/service/auto-service-annotations/1.0.1/auto-service-annotations-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/auto/service/auto-service/1.0.1/auto-service-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/auto/auto-common/1.2/auto-common-1.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-chromium-driver/4.7.2/selenium-chromium-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-json/4.7.2/selenium-json-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v106/4.7.2/selenium-devtools-v106-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v107/4.7.2/selenium-devtools-v107-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v108/4.7.2/selenium-devtools-v108-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-devtools-v85/4.7.2/selenium-devtools-v85-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-edge-driver/4.7.2/selenium-edge-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-firefox-driver/4.7.2/selenium-firefox-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-http/4.7.2/selenium-http-4.7.2.jar:/Users/tpopova/.m2/repository/dev/failsafe/failsafe/3.3.0/failsafe-3.3.0.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-ie-driver/4.7.2/selenium-ie-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-remote-driver/4.7.2/selenium-remote-driver-4.7.2.jar:/Users/tpopova/.m2/repository/com/beust/jcommander/1.82/jcommander-1.82.jar:/Users/tpopova/.m2/repository/io/netty/netty-buffer/4.1.84.Final/netty-buffer-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec-http/4.1.84.Final/netty-codec-http-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec/4.1.84.Final/netty-codec-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-handler/4.1.84.Final/netty-handler-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-common/4.1.84.Final/netty-common-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-classes-epoll/4.1.84.Final/netty-transport-classes-epoll-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-classes-kqueue/4.1.84.Final/netty-transport-classes-kqueue-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-epoll/4.1.84.Final/netty-transport-native-epoll-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.84.Final/netty-transport-native-kqueue-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.84.Final/netty-transport-native-unix-common-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport/4.1.84.Final/netty-transport-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-resolver/4.1.84.Final/netty-resolver-4.1.84.Final.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-api/1.19.0/opentelemetry-api-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-context/1.19.0/opentelemetry-context-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-exporter-logging/1.19.0/opentelemetry-exporter-logging-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-metrics/1.19.0/opentelemetry-sdk-metrics-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-logs/1.19.0-alpha/opentelemetry-sdk-logs-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-api-logs/1.19.0-alpha/opentelemetry-api-logs-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-common/1.19.0/opentelemetry-sdk-common-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure-spi/1.19.0/opentelemetry-sdk-extension-autoconfigure-spi-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-extension-autoconfigure/1.19.0-alpha/opentelemetry-sdk-extension-autoconfigure-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-exporter-common/1.19.0/opentelemetry-exporter-common-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk-trace/1.19.0/opentelemetry-sdk-trace-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-sdk/1.19.0/opentelemetry-sdk-1.19.0.jar:/Users/tpopova/.m2/repository/io/opentelemetry/opentelemetry-semconv/1.19.0-alpha/opentelemetry-semconv-1.19.0-alpha.jar:/Users/tpopova/.m2/repository/io/ous/jtoml/2.0.0/jtoml-2.0.0.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar:/Users/tpopova/.m2/repository/org/asynchttpclient/async-http-client/2.12.3/async-http-client-2.12.3.jar:/Users/tpopova/.m2/repository/org/asynchttpclient/async-http-client-netty-utils/2.12.3/async-http-client-netty-utils-2.12.3.jar:/Users/tpopova/.m2/repository/io/netty/netty-codec-socks/4.1.60.Final/netty-codec-socks-4.1.60.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-handler-proxy/4.1.60.Final/netty-handler-proxy-4.1.60.Final.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-epoll/4.1.60.Final/netty-transport-native-epoll-4.1.60.Final-linux-x86_64.jar:/Users/tpopova/.m2/repository/io/netty/netty-transport-native-kqueue/4.1.60.Final/netty-transport-native-kqueue-4.1.60.Final-osx-x86_64.jar:/Users/tpopova/.m2/repository/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar:/Users/tpopova/.m2/repository/com/typesafe/netty/netty-reactive-streams/2.0.4/netty-reactive-streams-2.0.4.jar:/Users/tpopova/.m2/repository/com/sun/activation/jakarta.activation/1.2.2/jakarta.activation-1.2.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-manager/4.7.2/selenium-manager-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-safari-driver/4.7.2/selenium-safari-driver-4.7.2.jar:/Users/tpopova/.m2/repository/org/seleniumhq/selenium/selenium-support/4.7.2/selenium-support-4.7.2.jar:/Users/tpopova/.m2/repository/org/slf4j/slf4j-api/2.0.6/slf4j-api-2.0.6.jar:/Users/tpopova/.m2/repository/com/codeborne/selenide-core/6.11.0/selenide-core-6.11.0.jar:/Users/tpopova/.m2/repository/io/github/bonigarcia/webdrivermanager/5.3.1/webdrivermanager-5.3.1.jar:/Users/tpopova/.m2/repository/org/brotli/dec/0.1.2/dec-0.1.2.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-compress/1.22/commons-compress-1.22.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.2.1/httpclient5-5.2.1.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.2/httpcore5-5.2.jar:/Users/tpopova/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.2/httpcore5-h2-5.2.jar:/Users/tpopova/.m2/repository/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar:/Users/tpopova/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/Users/tpopova/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/tpopova/.m2/repository/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar:/Users/tpopova/.m2/repository/com/google/errorprone/error_prone_annotations/2.11.0/error_prone_annotations-2.11.0.jar:/Users/tpopova/.m2/repository/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar:/Users/tpopova/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/tpopova/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/tpopova"/>
+    <property name="user.language" value="de"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2022-01-18"/>
+    <property name="java.home" value="/opt/homebrew/Cellar/openjdk/17.0.2/libexec/openjdk.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/tpopova/IdeaProjects/rest-assured"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="/Users/tpopova/IdeaProjects/rest-assured/target/surefire/surefirebooter16009212636429188560.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="17.0.2+0"/>
+    <property name="user.name" value="tpopova"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="12.5.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Homebrew"/>
+    <property name="localRepository" value="/Users/tpopova/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/n1/fg0bdx8n1kb1sm_p_9_5bx580000gn/T/"/>
+    <property name="java.version" value="17.0.2"/>
+    <property name="user.dir" value="/Users/tpopova/IdeaProjects/rest-assured"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/tpopova/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Homebrew"/>
+    <property name="java.vm.version" value="17.0.2+0"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="61.0"/>
+    <property name="http.proxyPort" value="8080"/>
+  </properties>
+  <testcase name="testEmptyEmail400" classname="customer.AssignLicensesApiTests" time="0.515"/>
+  <testcase name="testNotExistingTeamNoLicenseId400" classname="customer.AssignLicensesApiTests" time="0.088">
+    <failure message="&#10;Multiple Failures (2 failures)&#10;-- failure 1 --&#10;expected: 400&#10; but was: 404&#10;at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:146)&#10;-- failure 2 --&#10;expected: &#10;  class LicenseResponse {&#10;      licenseId: AYUP1280JG&#10;      product: class ProductResponse {&#10;          code: WS&#10;          name: WebStorm&#10;      }&#10;      assignee: null&#10;      subscription: class SubscriptionResponse {&#10;          validUntilDate: 2023-01-14T00:00+03:00&#10;          subscriptionPackRef: 1222/MMM56MR&#10;          isAutomaticallyRenewed: false&#10;          isOutdated: false&#10;      }&#10;      perpetual: null&#10;      domain: null&#10;      lastSeen: null&#10;      team: class TeamResponse {&#10;          id: 9999999&#10;          name: Team TESTAUTOMATION&#10;      }&#10;      isTransferableBetweenTeams: true&#10;      isTrial: false&#10;      isAvailableToAssign: true&#10;      isSuspended: false&#10;  }&#10; but was: &#10;  class LicenseResponse {&#10;      licenseId: AYUP1280JG&#10;      product: class ProductResponse {&#10;          code: WS&#10;          name: WebStorm&#10;      }&#10;      assignee: null&#10;      subscription: class SubscriptionResponse {&#10;          validUntilDate: 2023-01-14T00:00+03:00&#10;          subscriptionPackRef: 1222/MMM56MR&#10;          isAutomaticallyRenewed: false&#10;          isOutdated: false&#10;      }&#10;      perpetual: null&#10;      domain: null&#10;      lastSeen: null&#10;      team: class TeamResponse {&#10;          id: 1817040&#10;          name: Team TESTAUTOMATION&#10;      }&#10;      isTransferableBetweenTeams: true&#10;      isTrial: false&#10;      isAvailableToAssign: true&#10;      isSuspended: false&#10;  }&#10;at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:149)" type="org.assertj.core.error.AssertJMultipleFailuresError">org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (2 failures)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:146)
+-- failure 2 --
+expected: 
+  class LicenseResponse {
+      licenseId: AYUP1280JG
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 9999999
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+ but was: 
+  class LicenseResponse {
+      licenseId: AYUP1280JG
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+at AssignLicensesApiTests.testNotExistingTeamNoLicenseId400(AssignLicensesApiTests.java:149)
+</failure>
+    <system-err><![CDATA[[INFO] LicenseSupplierForAssignLicenseCall - My team is: 1817040
+[INFO] CustomerHelper - 25: AYUP1280JG belongs to 1817040
+[INFO] CustomerHelper - class LicenseResponse {
+    licenseId: AYUP1280JG
+    product: class ProductResponse {
+        code: WS
+        name: WebStorm
+    }
+    assignee: null
+    subscription: class SubscriptionResponse {
+        validUntilDate: 2023-01-14T00:00+03:00
+        subscriptionPackRef: 1222/MMM56MR
+        isAutomaticallyRenewed: false
+        isOutdated: false
+    }
+    perpetual: null
+    domain: null
+    lastSeen: null
+    team: class TeamResponse {
+        id: 1817040
+        name: Team TESTAUTOMATION
+    }
+    isTransferableBetweenTeams: true
+    isTrial: false
+    isAvailableToAssign: true
+    isSuspended: false
+}
+[INFO] BlockedLicenseIdsBase - License [AYUP1280JG] is free now
+]]></system-err>
+  </testcase>
+  <testcase name="testEmptyLastname400" classname="customer.AssignLicensesApiTests" time="0.318"/>
+  <testcase name="testEitherLicenseIdOrLicenseMustBeProvided400" classname="customer.AssignLicensesApiTests" time="0.087"/>
+  <testcase name="testNoLicenseId200" classname="customer.AssignLicensesApiTests" time="0.165"/>
+  <testcase name="testEmptyFirstname400" classname="customer.AssignLicensesApiTests" time="0.407"/>
+  <testcase name="testAssignLicenseFromAnotherTeam403" classname="customer.AssignLicensesApiTests" time="0.635"/>
+  <testcase name="testWrongToken400" classname="customer.AssignLicensesApiTests" time="0">
+    <failure message="&#10;Multiple Failures (1 failure)&#10;-- failure 1 --&#10;expected: 400&#10; but was: 401&#10;at AssignLicensesApiTests.testWrongToken400(AssignLicensesApiTests.java:33)" type="org.assertj.core.error.AssertJMultipleFailuresError">org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 401
+at AssignLicensesApiTests.testWrongToken400(AssignLicensesApiTests.java:33)
+</failure>
+    <system-err><![CDATA[[INFO] BlockedLicenseIdsBase - License [W7SASMX33D] is free now
+[INFO] LicenseSupplierForAssignLicenseCall - My team is: 1817040
+]]></system-err>
+  </testcase>
+  <testcase name="testXCustomerNotExists400" classname="customer.AssignLicensesApiTests" time="0">
+    <failure message="&#10;Multiple Failures (1 failure)&#10;-- failure 1 --&#10;expected: 400&#10; but was: 401&#10;at AssignLicensesApiTests.testXCustomerNotExists400(AssignLicensesApiTests.java:46)" type="org.assertj.core.error.AssertJMultipleFailuresError">org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 401
+at AssignLicensesApiTests.testXCustomerNotExists400(AssignLicensesApiTests.java:46)
+</failure>
+  </testcase>
+  <testcase name="testWrongEmailFormat400" classname="customer.AssignLicensesApiTests" time="0.218"/>
+  <testcase name="testLicenseIdValueNotExistsNoLicense400" classname="customer.AssignLicensesApiTests" time="0.273">
+    <failure message="&#10;Multiple Failures (1 failure)&#10;-- failure 1 --&#10;expected: 400&#10; but was: 404&#10;at AssignLicensesApiTests.testLicenseIdValueNotExistsNoLicense400(AssignLicensesApiTests.java:60)" type="org.assertj.core.error.AssertJMultipleFailuresError">org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testLicenseIdValueNotExistsNoLicense400(AssignLicensesApiTests.java:60)
+</failure>
+    <system-err><![CDATA[[ERROR] AssignLicenseCall - Message: 
+HTTP response code: 404
+HTTP response body: {"code":"LICENSE_NOT_FOUND","description":"RIQIET9999"}
+HTTP response headers: {access-control-allow-origin=[*], content-type=[application/json;charset=UTF-8], date=[Sun, 08 Jan 2023 20:38:45 GMT], server=[nginx]}
+[INFO] BlockedLicenseIdsBase - License [AYUP1280JG] is free now
+]]></system-err>
+  </testcase>
+  <testcase name="testAssignLicenseAsViewer403" classname="customer.AssignLicensesApiTests" time="0.561">
+    <failure message="ApiException was expected: Viewer and Primary contact access tokens allow read-only access to the API: https://sales.jetbrains.com/hc/en-gb/articles/4406854152978-JetBrains-Account-API ==&gt; Expected org.openapitools.client.ApiException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: ApiException was expected: Viewer and Primary contact access tokens allow read-only access to the API: https://sales.jetbrains.com/hc/en-gb/articles/4406854152978-JetBrains-Account-API ==> Expected org.openapitools.client.ApiException to be thrown, but nothing was thrown.
+	at customer.AssignLicensesApiTests.testAssignLicenseAsViewer403(AssignLicensesApiTests.java:192)
+</failure>
+    <system-err><![CDATA[[INFO] LicenseSupplierForAssignLicenseCall - 25:OIY94JBDUQ from the team: 1817040 were chosen to be assigned
+[INFO] BlockedLicenseIdsBase - License OIY94JBDUQ was blocked
+[INFO] AssignLicenseCall - class AssignLicenseRequest {
+    licenseId: null
+    license: class AssignFromTeamRequest {
+        team: 1817040
+        productCode: 0000000
+    }
+    contact: class AssigneeContactRequest {
+        firstName: firstname
+        lastName: lastName
+        email: email@gmail.com
+    }
+    sendEmail: false
+    includeOfflineActivationCode: false
+}
+[INFO] LicenseSupplierForAssignLicenseCall - 20:AYUP1280JG from the team: 1817040 were chosen to be assigned
+[INFO] BlockedLicenseIdsBase - License AYUP1280JG was blocked
+[INFO] AssignLicenseCall - class AssignLicenseRequest {
+    licenseId: null
+    license: class AssignFromTeamRequest {
+        team: 1817040
+        productCode: WS
+    }
+    contact: class AssigneeContactRequest {
+        firstName: firstname
+        lastName: lastName
+        email: email@gmail.com
+    }
+    sendEmail: false
+    includeOfflineActivationCode: false
+}
+[ERROR] AssignLicenseCall - Message: 
+HTTP response code: 404
+HTTP response body: {"code":"PRODUCT_NOT_FOUND","description":"0000000"}
+HTTP response headers: {access-control-allow-origin=[*], content-type=[application/json;charset=UTF-8], date=[Sun, 08 Jan 2023 20:38:45 GMT], server=[nginx]}
+[INFO] AssignLicenseCall - 200
+[INFO] AssignLicenseCall - null
+[INFO] AssignLicenseCall - {access-control-allow-origin=[*], content-length=[0], content-type=[application/json;charset=UTF-8], date=[Sun, 08 Jan 2023 20:38:45 GMT], server=[nginx], strict-transport-security=[max-age=31536000; includeSubdomains;], x-content-type-options=[nosniff], x-frame-options=[SAMEORIGIN], x-xss-protection=[1; mode=block;]}
+[INFO] BlockedLicenseIdsBase - License [AYUP1280JG] is free now
+]]></system-err>
+  </testcase>
+  <testcase name="testNotExistingProductCodeNoLicenseId400" classname="customer.AssignLicensesApiTests" time="0.783">
+    <failure message="&#10;Multiple Failures (2 failures)&#10;-- failure 1 --&#10;expected: 400&#10; but was: 404&#10;at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:131)&#10;-- failure 2 --&#10;expected: &#10;  class LicenseResponse {&#10;      licenseId: OIY94JBDUQ&#10;      product: class ProductResponse {&#10;          code: 0000000&#10;          name: WebStorm&#10;      }&#10;      assignee: null&#10;      subscription: class SubscriptionResponse {&#10;          validUntilDate: 2023-01-14T00:00+03:00&#10;          subscriptionPackRef: 1222/MMM56MR&#10;          isAutomaticallyRenewed: false&#10;          isOutdated: false&#10;      }&#10;      perpetual: null&#10;      domain: null&#10;      lastSeen: null&#10;      team: class TeamResponse {&#10;          id: 1817040&#10;          name: Team TESTAUTOMATION&#10;      }&#10;      isTransferableBetweenTeams: true&#10;      isTrial: false&#10;      isAvailableToAssign: true&#10;      isSuspended: false&#10;  }&#10; but was: &#10;  class LicenseResponse {&#10;      licenseId: OIY94JBDUQ&#10;      product: class ProductResponse {&#10;          code: WS&#10;          name: WebStorm&#10;      }&#10;      assignee: class class org.openapitools.client.model.AssigneeResponse {&#10;          instance: class User {&#10;              type: USER&#10;              name: firstname lastName&#10;              email: email@gmail.com&#10;          }&#10;          isNullable: false&#10;          schemaType: anyOf&#10;      }&#10;      subscription: class SubscriptionResponse {&#10;          validUntilDate: 2023-01-14T00:00+03:00&#10;          subscriptionPackRef: 1222/MMM56MR&#10;          isAutomaticallyRenewed: false&#10;          isOutdated: false&#10;      }&#10;      perpetual: null&#10;      domain: null&#10;      lastSeen: class LastSeenResponse {&#10;          lastSeenDate: null&#10;          lastAssignmentDate: 2023-01-08T23:38:46+03:00&#10;          isOfflineCodeGenerated: false&#10;      }&#10;      team: class TeamResponse {&#10;          id: 1817040&#10;          name: Team TESTAUTOMATION&#10;      }&#10;      isTransferableBetweenTeams: true&#10;      isTrial: false&#10;      isAvailableToAssign: false&#10;      isSuspended: false&#10;  }&#10;at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:134)" type="org.assertj.core.error.AssertJMultipleFailuresError">org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (2 failures)
+-- failure 1 --
+expected: 400
+ but was: 404
+at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:131)
+-- failure 2 --
+expected: 
+  class LicenseResponse {
+      licenseId: OIY94JBDUQ
+      product: class ProductResponse {
+          code: 0000000
+          name: WebStorm
+      }
+      assignee: null
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: null
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: true
+      isSuspended: false
+  }
+ but was: 
+  class LicenseResponse {
+      licenseId: OIY94JBDUQ
+      product: class ProductResponse {
+          code: WS
+          name: WebStorm
+      }
+      assignee: class class org.openapitools.client.model.AssigneeResponse {
+          instance: class User {
+              type: USER
+              name: firstname lastName
+              email: email@gmail.com
+          }
+          isNullable: false
+          schemaType: anyOf
+      }
+      subscription: class SubscriptionResponse {
+          validUntilDate: 2023-01-14T00:00+03:00
+          subscriptionPackRef: 1222/MMM56MR
+          isAutomaticallyRenewed: false
+          isOutdated: false
+      }
+      perpetual: null
+      domain: null
+      lastSeen: class LastSeenResponse {
+          lastSeenDate: null
+          lastAssignmentDate: 2023-01-08T23:38:46+03:00
+          isOfflineCodeGenerated: false
+      }
+      team: class TeamResponse {
+          id: 1817040
+          name: Team TESTAUTOMATION
+      }
+      isTransferableBetweenTeams: true
+      isTrial: false
+      isAvailableToAssign: false
+      isSuspended: false
+  }
+at AssignLicensesApiTests.testNotExistingProductCodeNoLicenseId400(AssignLicensesApiTests.java:134)
+</failure>
+    <system-err><![CDATA[[INFO] LicenseSupplierForAssignLicenseCall - 23:XSLL4HT5FG from the team: 1817040 were chosen to be assigned
+[INFO] BlockedLicenseIdsBase - License XSLL4HT5FG was blocked
+[INFO] AssignLicenseCall - class AssignLicenseRequest {
+    licenseId: XSLL4HT5FG
+    license: class AssignFromTeamRequest {
+        team: 1817040
+        productCode: WS
+    }
+    contact: class AssigneeContactRequest {
+        firstName: firstname
+        lastName: lastName
+        email: email@gmail.com
+    }
+    sendEmail: false
+    includeOfflineActivationCode: false
+}
+[INFO] CustomerHelper - 25: OIY94JBDUQ belongs to 1817040
+[INFO] CustomerHelper - class LicenseResponse {
+    licenseId: OIY94JBDUQ
+    product: class ProductResponse {
+        code: WS
+        name: WebStorm
+    }
+    assignee: class class org.openapitools.client.model.AssigneeResponse {
+        instance: class User {
+            type: USER
+            name: firstname lastName
+            email: email@gmail.com
+        }
+        isNullable: false
+        schemaType: anyOf
+    }
+    subscription: class SubscriptionResponse {
+        validUntilDate: 2023-01-14T00:00+03:00
+        subscriptionPackRef: 1222/MMM56MR
+        isAutomaticallyRenewed: false
+        isOutdated: false
+    }
+    perpetual: null
+    domain: null
+    lastSeen: class LastSeenResponse {
+        lastSeenDate: null
+        lastAssignmentDate: 2023-01-08T23:38:46+03:00
+        isOfflineCodeGenerated: false
+    }
+    team: class TeamResponse {
+        id: 1817040
+        name: Team TESTAUTOMATION
+    }
+    isTransferableBetweenTeams: true
+    isTrial: false
+    isAvailableToAssign: false
+    isSuspended: false
+}
+[INFO] BlockedLicenseIdsBase - License [OIY94JBDUQ] is free now
+]]></system-err>
+  </testcase>
+  <testcase name="testLicencesAreNotOverwritten200" classname="customer.AssignLicensesApiTests" time="1.325"/>
+  <testcase name="testNoLicense200" classname="customer.AssignLicensesApiTests" time="1.375"/>
+  <testcase name="testNoAvailableLicenseToAssign400" classname="customer.AssignLicensesApiTests" time="1.62"/>
+</testsuite>

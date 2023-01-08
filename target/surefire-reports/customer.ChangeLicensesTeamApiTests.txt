@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+Test set: customer.ChangeLicensesTeamApiTests
+-------------------------------------------------------------------------------
+Tests run: 16, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 4.574 s <<< FAILURE! - in customer.ChangeLicensesTeamApiTests
+testWrongToken400  Time elapsed: 0.465 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 401
+at ChangeLicensesTeamApiTests.testWrongToken400(ChangeLicensesTeamApiTests.java:215)
+
+testTargetTeamNotExists400  Time elapsed: 0.047 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 404
+at ChangeLicensesTeamApiTests.testTargetTeamNotExists400(ChangeLicensesTeamApiTests.java:107)
+
+testTargetTeamIsNull400  Time elapsed: 0.255 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 404
+at ChangeLicensesTeamApiTests.testTargetTeamIsNull400(ChangeLicensesTeamApiTests.java:120)
+
+testXCustomerCodeNotExists400  Time elapsed: 0.668 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (2 failures)
+-- failure 1 --
+expected: 400
+ but was: 401
+at ChangeLicensesTeamApiTests.testXCustomerCodeNotExists400(ChangeLicensesTeamApiTests.java:133)
+-- failure 2 --
+Expecting actual:
+  "{"code":"INVALID_TOKEN","description":"The token provided is invalid"}"
+to contain:
+  "Customer" 
+at ChangeLicensesTeamApiTests.testXCustomerCodeNotExists400(ChangeLicensesTeamApiTests.java:134)
+
+testLicenseIdIsNull400  Time elapsed: 1.427 s  <<< FAILURE!
+org.assertj.core.error.AssertJMultipleFailuresError: 
+
+Multiple Failures (1 failure)
+-- failure 1 --
+expected: 400
+ but was: 500
+at ChangeLicensesTeamApiTests.testLicenseIdIsNull400(ChangeLicensesTeamApiTests.java:178)
+

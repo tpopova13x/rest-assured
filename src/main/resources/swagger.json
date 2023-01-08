@@ -1,0 +1,962 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "JetBrains Account API",
+    "contact" : {
+      "email" : "support-int@jetbrains.com"
+    },
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "/api/v1",
+    "variables" : { }
+  } ],
+  "paths" : {
+    "/token" : {
+      "get" : {
+        "tags" : [ "Token" ],
+        "summary" : "Returns info about the entity managed by current token",
+        "operationId" : "getManagedEntityInfo",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "anyOf" : [ {
+                    "$ref" : "#/components/schemas/ManagedCustomerResponse"
+                  }, {
+                    "$ref" : "#/components/schemas/ManagedTeamResponse"
+                  } ]
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/licenses/assign" : {
+      "post" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Assigns a license to a user",
+        "operationId" : "assignLicense",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AssignLicenseRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "400" : {
+            "description" : "bad request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/changeLicensesTeam" : {
+      "post" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Change team for licenses",
+        "description" : "Changes team for provided licenses. Only licenses that are transferable between teams will be transferred.",
+        "operationId" : "changeTeam",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChangeTeamRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "400" : {
+            "description" : "bad request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/licenses" : {
+      "get" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Returns all the licenses of a current customer",
+        "operationId" : "getAllForCustomer",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "productCode",
+          "in" : "query",
+          "description" : "Product code to filter licenses",
+          "schema" : {
+            "type" : "string",
+            "default" : "null"
+          },
+          "example" : "II"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Current page number (page numbering starts with 1)",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "description" : "The number of items to return per page",
+          "schema" : {
+            "maximum" : 200,
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 100
+          }
+        }, {
+          "name" : "assigned",
+          "in" : "query",
+          "description" : "Fetches only assigned licenses if set to true and unassigned is set to false. If set to null all licenses will be fetched.",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "assigneeEmail",
+          "in" : "query",
+          "description" : "Assignee email to filter licenses",
+          "schema" : {
+            "type" : "string",
+            "default" : "null"
+          },
+          "example" : "assignee.email@example.com"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "headers" : {
+              "X-Total-Count" : {
+                "description" : "The total entries",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "integer"
+                }
+              },
+              "Link" : {
+                "description" : "Links for pagination",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/LicenseResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/teams/{teamId}/licenses" : {
+      "get" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Returns all the licenses of a current team",
+        "operationId" : "getAllForTeam",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "teamId",
+          "in" : "path",
+          "description" : "Team ID",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        }, {
+          "name" : "productCode",
+          "in" : "query",
+          "description" : "Product code to filter licenses",
+          "schema" : {
+            "type" : "string",
+            "default" : "null"
+          },
+          "example" : "II"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "description" : "Current page number (page numbering starts with 1)",
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 1
+          }
+        }, {
+          "name" : "perPage",
+          "in" : "query",
+          "description" : "The number of items to return per page",
+          "schema" : {
+            "maximum" : 200,
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 100
+          }
+        }, {
+          "name" : "assigned",
+          "in" : "query",
+          "description" : "Fetches only assigned licenses if set to true and unassigned is set to false. If set to null all licenses will be fetched.",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "assigneeEmail",
+          "in" : "query",
+          "description" : "Assignee email to filter licenses",
+          "schema" : {
+            "type" : "string",
+            "default" : "null"
+          },
+          "example" : "assignee.email@example.com"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "headers" : {
+              "X-Total-Count" : {
+                "description" : "The total entries",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "integer"
+                }
+              },
+              "Link" : {
+                "description" : "Links for pagination",
+                "style" : "simple",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/LicenseResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/licenses/{licenseId}" : {
+      "get" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Returns a license by ID",
+        "operationId" : "getByLicenseId",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "licenseId",
+          "in" : "path",
+          "description" : "ID of a license",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "ABC1234567"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LicenseResponse"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/customer/licenses/revoke" : {
+      "post" : {
+        "tags" : [ "Licenses" ],
+        "summary" : "Revokes a license from a user",
+        "description" : "If licenseId is provided, a single license will be revoked if found. Other parameters are ignored in this case. <br />If he licenseId is not provided then the licenses will be revoked by the assignee's email. <br />In addition to email, productCode might be provided to revoke licenses for specified products only for the defined email. <br />JetBrains IDE licenses are distributed on a per-user basis and must be statically assigned to developers. Therefore, the revoke operation via the JetBrains Account API is available only 30 days after the license has been assigned. For the automated license distribution you can use the JetBrains License Vault: https://www.jetbrains.com/license-server <br />If the licenses are being revoked by assignee's email within 30 days after assignment (for at least 1 assignee's license found), RECENTLY_ASSIGNED_LICENSE_IS_NOT_AVAILABLE_FOR_REVOKE error will be returned and no licenses will be revoked.",
+        "operationId" : "revokeAsset",
+        "parameters" : [ {
+          "name" : "X-Customer-Code",
+          "in" : "header",
+          "description" : "Company Profile ID, it can be found on JetBrains Account portal near the company name",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "licenseId",
+          "in" : "query",
+          "description" : "ID of a license",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "ABC1234567"
+        }, {
+          "name" : "email",
+          "in" : "query",
+          "description" : "Assignee's email",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "example@domain.com"
+        }, {
+          "name" : "productCode",
+          "in" : "query",
+          "description" : "Product code to filter licenses",
+          "schema" : {
+            "type" : "string"
+          },
+          "example" : "II"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "licenseIds of revoked licenses",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RevokedLicensesResponse"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/plugins" : {
+      "get" : {
+        "tags" : [ "Dictionaries" ],
+        "summary" : "Returns a plugins list",
+        "operationId" : "getPlugins",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    },
+    "/products" : {
+      "get" : {
+        "tags" : [ "Dictionaries" ],
+        "summary" : "Returns a products list",
+        "operationId" : "getProducts",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/ProductResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "header-api-key" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ContactFlagsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "isPrimaryLicensee" : {
+            "type" : "boolean"
+          },
+          "isPrimaryTechnical" : {
+            "type" : "boolean"
+          },
+          "isPrimaryBilling" : {
+            "type" : "boolean"
+          }
+        },
+        "description" : "Flags of the current account's contact on the customer."
+      },
+      "ManagedCustomerResponse" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/ManagedEntityType"
+          },
+          "code" : {
+            "type" : "integer",
+            "description" : "Code of the managed customer. Use this code for API requests",
+            "format" : "int64",
+            "example" : 1
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the managed customer.",
+            "example" : "Some Organization"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "The role of current account on the customer.",
+            "example" : "ADMIN",
+            "enum" : [ "ADMIN", "VIEWER", "PRIMARY_CONTACT" ]
+          },
+          "contactFlags" : {
+            "$ref" : "#/components/schemas/ContactFlagsResponse"
+          },
+          "teams" : {
+            "type" : "array",
+            "description" : "List of customer teams.",
+            "items" : {
+              "$ref" : "#/components/schemas/TeamResponseExt"
+            }
+          }
+        }
+      },
+      "ManagedEntityType" : {
+        "type" : "string",
+        "enum" : [ "CUSTOMER", "TEAM" ]
+      },
+      "TeamResponseExt" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "description" : "ID of the managed team. Use this ID for API requests",
+            "format" : "int32",
+            "example" : 1
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of the managed team.",
+            "example" : "Sample Team"
+          },
+          "role" : {
+            "type" : "string",
+            "description" : "Role of the current account on the team",
+            "example" : "VIEWER",
+            "enum" : [ "ADMIN", "VIEWER" ]
+          }
+        },
+        "description" : "Information about the team token was generated for."
+      },
+      "CustomerResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "integer",
+            "description" : "Code of a customer.",
+            "format" : "int64",
+            "example" : 1
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "Name of a customer.",
+            "example" : "Some Organization"
+          }
+        },
+        "description" : "Information about the customer owning the team."
+      },
+      "ManagedTeamResponse" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/ManagedEntityType"
+          },
+          "team" : {
+            "$ref" : "#/components/schemas/TeamResponseExt"
+          },
+          "customer" : {
+            "$ref" : "#/components/schemas/CustomerResponse"
+          }
+        }
+      },
+      "ManagedEntity" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/ManagedEntityType"
+          }
+        }
+      },
+      "AssignFromTeamRequest" : {
+        "required" : [ "productCode", "team" ],
+        "type" : "object",
+        "properties" : {
+          "team" : {
+            "type" : "integer",
+            "description" : "ID of a team to look for assignable license",
+            "format" : "int32",
+            "example" : 1
+          },
+          "productCode" : {
+            "type" : "string",
+            "description" : "The code of a product to assign",
+            "example" : "II"
+          }
+        },
+        "description" : "If licenseId is not specified, available license from the specified team for the specified product will be assigned. If no licenseId and license are specified, the 400 error will be returned."
+      },
+      "AssignLicenseRequest" : {
+        "required" : [ "contact", "includeOfflineActivationCode", "sendEmail" ],
+        "type" : "object",
+        "properties" : {
+          "licenseId" : {
+            "type" : "string",
+            "description" : "ID of a license to assign",
+            "example" : "ABC1234567"
+          },
+          "license" : {
+            "$ref" : "#/components/schemas/AssignFromTeamRequest"
+          },
+          "contact" : {
+            "$ref" : "#/components/schemas/AssigneeContactRequest"
+          },
+          "sendEmail" : {
+            "type" : "boolean"
+          },
+          "includeOfflineActivationCode" : {
+            "type" : "boolean",
+            "description" : "Indicates whether an offline activation code should be attached to the email. The offline activation code can be attached only for contacts that do not have JetBrains Account. 'includeOfflineActivationCode' will be ignored if the contact has JetBrains Account. Assignee can download offline activation code in their JetBrains Account"
+          }
+        }
+      },
+      "AssigneeContactRequest" : {
+        "required" : [ "email", "firstName", "lastName" ],
+        "type" : "object",
+        "properties" : {
+          "firstName" : {
+            "type" : "string"
+          },
+          "lastName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string",
+            "format" : "email"
+          }
+        }
+      },
+      "Error" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ChangeTeamRequest" : {
+        "required" : [ "licenseIds", "targetTeamId" ],
+        "type" : "object",
+        "properties" : {
+          "targetTeamId" : {
+            "type" : "integer",
+            "description" : "ID of the target team",
+            "format" : "int32"
+          },
+          "licenseIds" : {
+            "type" : "array",
+            "description" : "IDs of the licenses to change team",
+            "items" : {
+              "type" : "string",
+              "description" : "IDs of the licenses to change team"
+            }
+          }
+        }
+      },
+      "ChangeTeamResponse" : {
+        "type" : "object",
+        "properties" : {
+          "licenseIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "AssigneeResponse" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/AssigneeTypeResponse"
+          }
+        },
+        "anyOf" : [ {
+          "$ref" : "#/components/schemas/User"
+        }, {
+          "$ref" : "#/components/schemas/Server"
+        }, {
+          "$ref" : "#/components/schemas/LicenseKey"
+        } ]
+      },
+      "AssigneeTypeResponse" : {
+        "type" : "string",
+        "enum" : [ "USER", "SERVER", "LICENSE_KEY" ]
+      },
+      "LastSeenResponse" : {
+        "type" : "object",
+        "properties" : {
+          "lastSeenDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "lastAssignmentDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "isOfflineCodeGenerated" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "LicenseKey" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/AssigneeTypeResponse"
+          },
+          "registrationName" : {
+            "type" : "string"
+          },
+          "key" : {
+            "type" : "string"
+          }
+        }
+      },
+      "LicenseResponse" : {
+        "type" : "object",
+        "properties" : {
+          "licenseId" : {
+            "type" : "string",
+            "example" : "ABC1234567"
+          },
+          "product" : {
+            "$ref" : "#/components/schemas/ProductResponse"
+          },
+          "assignee" : {
+            "$ref" : "#/components/schemas/AssigneeResponse"
+          },
+          "subscription" : {
+            "$ref" : "#/components/schemas/SubscriptionResponse"
+          },
+          "perpetual" : {
+            "$ref" : "#/components/schemas/PerpetualResponse"
+          },
+          "domain" : {
+            "type" : "string"
+          },
+          "lastSeen" : {
+            "$ref" : "#/components/schemas/LastSeenResponse"
+          },
+          "team" : {
+            "$ref" : "#/components/schemas/TeamResponse"
+          },
+          "isTransferableBetweenTeams" : {
+            "type" : "boolean"
+          },
+          "isTrial" : {
+            "type" : "boolean"
+          },
+          "isAvailableToAssign" : {
+            "type" : "boolean",
+            "description" : "Indicates whether the license is available to assign."
+          },
+          "isSuspended" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "PerpetualResponse" : {
+        "type" : "object",
+        "properties" : {
+          "upgradeDueDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "isOutdated" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "ProductResponse" : {
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "type" : "string",
+            "description" : "The product code",
+            "example" : "II"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "The product name",
+            "example" : "IntelliJ IDEA Ultimate"
+          }
+        }
+      },
+      "Server" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/AssigneeTypeResponse"
+          },
+          "uid" : {
+            "type" : "string"
+          },
+          "serverType" : {
+            "type" : "string",
+            "enum" : [ "LICENSE_SERVER", "LICENSE_VAULT" ]
+          }
+        }
+      },
+      "SubscriptionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "validUntilDate" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "subscriptionPackRef" : {
+            "type" : "string",
+            "description" : "Subscription pack reference. 'null' if renewal is stopped."
+          },
+          "isAutomaticallyRenewed" : {
+            "type" : "boolean"
+          },
+          "isOutdated" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "TeamResponse" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "User" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "$ref" : "#/components/schemas/AssigneeTypeResponse"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PagedListResultLicenseResponse" : {
+        "type" : "object",
+        "properties" : {
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/LicenseResponse"
+            }
+          },
+          "pages" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "count" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "RevokedLicensesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "licenseIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "header-api-key" : {
+        "type" : "apiKey",
+        "description" : "API token, it can be generated on JetBrains Account portal for a company or team profile",
+        "name" : "X-Api-Key",
+        "in" : "header"
+      }
+    }
+  }
+}
